@@ -9,6 +9,9 @@ cats.match provides pattern matching for the monads in the clojure [cats](http:/
 
 It uses the [core.match](https://github.com/clojure/core.match) library to do the pattern matching part.
 
+There is no similar project providing pattern matching for [cats](http://funcool.github.io/cats/latest/), so when developing [instaskip](https://github.com/zalando-incubator/instaskip) I felt the need to create one.
+The initial version of cats.match was embedded into instaskip and now I took some time to extract it.
+
 The library is still in development, so use it with care.
 
 ## Usage
