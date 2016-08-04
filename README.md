@@ -12,9 +12,11 @@ It uses the [core.match](https://github.com/clojure/core.match) library to do th
 The library is still in development, so use it with care.
 
 ## Usage
+cats.match provides an out-of-the-box, user-friendly experience.
+
 Just require `[cats.match]` and you're good to go!
 
-Examples
+## Examples
 ```clojure
 (:require [cats.match]
           [clojure.core.match :as m]
@@ -51,7 +53,7 @@ For lein users
 
 ## How to contribute
 
-Open an issue in the github project and do a pull request!
+Open an issue in the github project and/or do a pull request!
 
 ## Contributors
 
