@@ -1,10 +1,15 @@
 # cats.match
 
 [![Clojars Project](https://img.shields.io/clojars/v/org.clojars.danpersa/cats.match.svg)](https://clojars.org/org.clojars.danpersa/cats.match)
+[![Build Status](https://travis-ci.org/zalando/cats.match.svg?branch=master)](https://travis-ci.org/zalando/cats.match)
 
 Having monads without pattern matching is neither fun nor cool!
 
-cats.match provides pattern matching for the monads in the clojure cats library.
+cats.match provides pattern matching for the monads in the clojure [cats](http://funcool.github.io/cats/latest/) library.
+
+It uses the [core.match](https://github.com/clojure/core.match) library to do the pattern matching part.
+
+The library is still in development, so use it with care.
 
 ## Usage
 Just require `[cats.match]` and you're good to go!
@@ -46,7 +51,11 @@ For lein users
 
 ## How to contribute
 
-Just do a pull request!
+Open an issue in the github project and do a pull request!
+
+## Contributors
+
+- [Dan Persa](https://twitter.com/danpersa)
 
 ## Publishing
 
