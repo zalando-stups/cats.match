@@ -1,4 +1,4 @@
-(defproject org.clojars.danpersa/cats.match "0.1.0"
+(defproject org.clojars.danpersa/cats.match "0.1.1-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Apache License"

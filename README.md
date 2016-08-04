@@ -44,6 +44,10 @@ For lein users
 
     [org.clojars.danpersa/cats.match 0.1.0]
 
+## How to contribute
+
+Just do a pull request!
+
 ## Publishing
 
      lein deploy clojars
