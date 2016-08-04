@@ -1,5 +1,7 @@
 # cats.match
 
+<p align="center"><img width="200" alt="cats.match" src="https://rawgithub.com/zalando/cats.match/master/cats.match.jpg"></p>
+
 [![Clojars Project](https://img.shields.io/clojars/v/org.clojars.danpersa/cats.match.svg)](https://clojars.org/org.clojars.danpersa/cats.match)
 [![Build Status](https://travis-ci.org/zalando/cats.match.svg?branch=master)](https://travis-ci.org/zalando/cats.match)
 
