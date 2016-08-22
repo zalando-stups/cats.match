@@ -54,7 +54,7 @@ Download from [clojars](https://clojars.org/org.clojars.danpersa/cats.match)
 
 For lein users
 
-    [org.clojars.danpersa/cats.match 0.1.0]
+    [org.clojars.danpersa/cats.match "0.1.0"]
 
 ## How to contribute
 
