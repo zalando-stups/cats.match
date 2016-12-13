@@ -44,6 +44,7 @@
   (val-at [this k not-found]
     (case k
       :left (.v this)
+      :failure (.v this)
       not-found)))
 
 (extend-type Right
@@ -51,4 +52,5 @@
   (val-at [this k not-found]
     (case k
       :right (.v this)
+      :success (.v this)
       not-found)))

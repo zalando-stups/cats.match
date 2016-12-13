@@ -36,21 +36,41 @@
                        {:nothing _} "nothing") => "nothing"))
 
 (facts "Pattern match for monad.either"
-       (fact "matches left"
-             (m/matchm (eth/left "left")
-                       {:left "nomatch"} "r0"
-                       {:left "left"} "r1"
-                       {:right "right"} "r2") => "r1")
-       (fact "matches and extracts left"
-             (m/matchm (eth/left "left")
-                       {:left l} l
-                       {:right r} "failure") => "left")
-       (fact "matches right"
-             (m/matchm (eth/right "right")
-                       {:left "left"} "r1"
-                       {:right "nomatch"} "no"
-                       {:right "right"} "r2") => "r2")
-       (fact "matches and extracts right"
-             (m/matchm (eth/right "right")
-                       {:left l} l
-                       {:right r} r) => "right"))
+       (fact "matches left and right"
+             (fact "matches left"
+                   (m/matchm (eth/left "left")
+                             {:left "nomatch"} "r0"
+                             {:left "left"} "r1"
+                             {:right "right"} "r2") => "r1")
+             (fact "matches and extracts left"
+                   (m/matchm (eth/left "left")
+                             {:left l} l
+                             {:right r} "success") => "left")
+             (fact "matches right"
+                   (m/matchm (eth/right "right")
+                             {:left "left"} "r1"
+                             {:right "nomatch"} "no"
+                             {:right "right"} "r2") => "r2")
+             (fact "matches and extracts right"
+                   (m/matchm (eth/right "right")
+                             {:left l} l
+                             {:right r} r) => "right"))
+       (fact "matches success and failure"
+             (fact "matches left"
+                   (m/matchm (eth/left "left")
+                             {:failure "nomatch"} "r0"
+                             {:failure "left"} "r1"
+                             {:success "right"} "r2") => "r1")
+             (fact "matches and extracts left"
+                   (m/matchm (eth/left "left")
+                             {:failure l} l
+                             {:success r} "success") => "left")
+             (fact "matches right"
+                   (m/matchm (eth/right "right")
+                             {:failure "left"} "r1"
+                             {:success "nomatch"} "no"
+                             {:success "right"} "r2") => "r2")
+             (fact "matches and extracts right"
+                   (m/matchm (eth/right "right")
+                             {:failure l} l
+                             {:success r} r) => "right")))
