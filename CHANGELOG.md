@@ -4,7 +4,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 ### Changed
-- Some changes
+- Change license to MIT
+- Match Either with :success, :failure
 
 
 ## 0.1.0 - 2016-08-04

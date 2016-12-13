@@ -44,8 +44,13 @@ Just require `[cats.match]` and you're good to go!
 ; matching on a cats.monad.either
 (m/matchm (eth/left "left")
           {:left l} l
-          {:right r} "failure")
+          {:right r} "success")
 ; outputs "left"
+
+(m/matchm (eth/left "left")
+          {:success success} "success"
+          {:failure failure} "failure")
+;outputs "failure"
 ```
 
 ## Installation
