@@ -1,13 +1,13 @@
 (ns cats.match
   (:require
     [cats.core :as c]
-    #?(:clj  [cats.monad.exception]
-       :cljs [cats.monad.exception :refer [Success Failure]])
-    #?(:clj  [cats.monad.maybe]
-       :cljs [cats.monad.maybe :refer [Just Nothing]])
-    #?(:clj  [cats.monad.either]
-       :cljs [cats.monad.either :refer [Left Right]])
-    #?(:clj  [clojure.core.match.protocols :refer [IMatchLookup]]))
+    #?@(:clj  [[cats.monad.exception]
+               [cats.monad.maybe]
+               [cats.monad.either]
+               [clojure.core.match.protocols :refer [IMatchLookup]]]
+        :cljs [[cats.monad.exception :refer [Success Failure]]
+               [cats.monad.maybe :refer [Just Nothing]]
+               [cats.monad.either :refer [Left Right]]]))
   #?(:clj
      (:import (cats.monad.exception Success)
               (cats.monad.exception Failure)
