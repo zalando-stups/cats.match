@@ -21,104 +21,100 @@
               (cats.monad.either Left)
               (cats.monad.either Right))))
 
+(defn- handle-success [this k not-found]
+  (case k
+    :success @this
+    not-found))
+
 (extend-type Success
   #?(:clj  IMatchLookup
      :cljs ILookup)
   #?(:clj  (val-at [this k not-found]
-             (case k
-               :success (.v this)
-               not-found))
+             (handle-success this k not-found))
      :cljs (-lookup
              ([this k]
-               (case k
-                 :success @this))
+               (handle-success this k nil))
              ([this k not-found]
-               (case k
-                 :success @this
-                 not-found)))))
+               (handle-success this k not-found)))))
+
+(defn- handle-failure [this k not-found]
+  (case k
+    :failure (c/extract this)
+    not-found))
 
 (extend-type Failure
   #?(:clj  IMatchLookup
      :cljs ILookup)
   #?(:clj  (val-at [this k not-found]
-             (case k
-               :failure (.e this)
-               not-found))
+             (handle-failure this k not-found))
      :cljs (-lookup
              ([this k]
-               (case k
-                 :failure (c/extract this)))
+               (handle-failure this k nil))
              ([this k not-found]
-               (case k
-                 :failure (c/extract this)
-                 not-found)))))
+               (handle-failure this k not-found)))))
+
+(defn- handle-just [this k not-found]
+  (case k
+    :just @this
+    not-found))
 
 (extend-type Just
   #?(:clj  IMatchLookup
      :cljs ILookup)
   #?(:clj  (val-at [this k not-found]
-             (case k
-               :just (.v this)
-               not-found))
+             (handle-just this k not-found))
      :cljs (-lookup
              ([this k]
-               (case k
-                 :just @this))
+               (handle-just this k nil))
              ([this k not-found]
-               (case k
-                 :just @this
-                 not-found)))))
+               (handle-just this k not-found)))))
+
+(defn- handle-nothing [k not-found]
+  (case k
+    :nothing :nothing
+    not-found))
 
 (extend-type Nothing
   #?(:clj  IMatchLookup
      :cljs ILookup)
-  #?(:clj (val-at [this k not-found]
-            (case k
-              :nothing :nothing
-              not-found))
+  #?(:clj  (val-at [_ k not-found]
+             (handle-nothing k not-found))
      :cljs (-lookup
              ([this k]
-               (case k
-                 :nothing :nothing))
+               (handle-nothing k nil))
              ([this k not-found]
-               (case k
-                 :nothing :nothing
-                 not-found)))))
+               (handle-nothing k not-found)))))
+
+(defn- handle-left [this k not-found]
+  (case k
+    :left @this
+    :failure @this
+    not-found))
 
 (extend-type Left
   #?(:clj  IMatchLookup
      :cljs ILookup)
-  #?(:clj (val-at [this k not-found]
-            (case k
-              :left (.v this)
-              :failure (.v this)
-              not-found))
+  #?(:clj  (val-at [this k not-found]
+             (handle-left this k not-found))
      :cljs (-lookup
              ([this k]
-               (case k
-                 :left @this
-                 :failure @this))
+               (handle-left this k nil))
              ([this k not-found]
-               (case k
-                 :left @this
-                 :failure @this
-                 not-found)))))
+               (handle-left this k not-found)))))
+
+(defn- handle-right [this k not-found]
+  (case k
+    :right @this
+    :success @this
+    not-found))
 
 (extend-type Right
   #?(:clj  IMatchLookup
      :cljs ILookup)
-  #?(:clj (val-at [this k not-found]
-            (case k
-              :right (.v this)
-              :success (.v this)
-              not-found))
+  #?(:clj  (val-at [this k not-found]
+             (handle-right this k not-found))
      :cljs (-lookup
              ([this k]
-               (case k
-                 :right @this
-                 :success @this))
+               (handle-right this k nil))
              ([this k not-found]
-               (case k
-                 :right @this
-                 :success @this
-                 not-found)))))
+               (handle-right this k not-found)))))
