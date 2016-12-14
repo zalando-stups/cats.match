@@ -7,9 +7,7 @@
        :cljs [cats.monad.maybe :refer [Just Nothing]])
     #?(:clj  [cats.monad.either]
        :cljs [cats.monad.either :refer [Left Right]])
-    #?(:clj
-    [clojure.core.match.protocols :refer [IMatchLookup]])
-    [clojure.core.match])
+    #?(:clj  [clojure.core.match.protocols :refer [IMatchLookup]]))
   #?(:clj
      (:import (cats.monad.exception Success)
               (cats.monad.exception Failure)
