@@ -1,14 +1,11 @@
 (ns cats.match
   (:require
     [cats.core :as c]
-    #?(:clj
-    [cats.monad.exception]
+    #?(:clj  [cats.monad.exception]
        :cljs [cats.monad.exception :refer [Success Failure]])
-    #?(:clj
-    [cats.monad.maybe]
+    #?(:clj  [cats.monad.maybe]
        :cljs [cats.monad.maybe :refer [Just Nothing]])
-    #?(:clj
-    [cats.monad.either]
+    #?(:clj  [cats.monad.either]
        :cljs [cats.monad.either :refer [Left Right]])
     #?(:clj
     [clojure.core.match.protocols :refer [IMatchLookup]])
@@ -27,15 +24,17 @@
     not-found))
 
 (extend-type Success
-  #?(:clj  IMatchLookup
-     :cljs ILookup)
-  #?(:clj  (val-at [this k not-found]
-             (handle-success this k not-found))
-     :cljs (-lookup
-             ([this k]
-               (handle-success this k nil))
-             ([this k not-found]
-               (handle-success this k not-found)))))
+  #?@(:clj
+      [IMatchLookup
+       (val-at [this k not-found]
+         (handle-success this k not-found))]
+      :cljs
+      [ILookup
+       (-lookup
+         ([this k]
+           (handle-success this k nil))
+         ([this k not-found]
+           (handle-success this k not-found)))]))
 
 (defn- handle-failure [this k not-found]
   (case k
@@ -43,15 +42,15 @@
     not-found))
 
 (extend-type Failure
-  #?(:clj  IMatchLookup
-     :cljs ILookup)
-  #?(:clj  (val-at [this k not-found]
-             (handle-failure this k not-found))
-     :cljs (-lookup
-             ([this k]
-               (handle-failure this k nil))
-             ([this k not-found]
-               (handle-failure this k not-found)))))
+  #?@(:clj  [IMatchLookup
+             (val-at [this k not-found]
+               (handle-failure this k not-found))]
+      :cljs [ILookup
+             (-lookup
+               ([this k]
+                 (handle-failure this k nil))
+               ([this k not-found]
+                 (handle-failure this k not-found)))]))
 
 (defn- handle-just [this k not-found]
   (case k
@@ -59,15 +58,15 @@
     not-found))
 
 (extend-type Just
-  #?(:clj  IMatchLookup
-     :cljs ILookup)
-  #?(:clj  (val-at [this k not-found]
-             (handle-just this k not-found))
-     :cljs (-lookup
-             ([this k]
-               (handle-just this k nil))
-             ([this k not-found]
-               (handle-just this k not-found)))))
+  #?@(:clj  [IMatchLookup
+             (val-at [this k not-found]
+               (handle-just this k not-found))]
+      :cljs [ILookup
+             (-lookup
+               ([this k]
+                 (handle-just this k nil))
+               ([this k not-found]
+                 (handle-just this k not-found)))]))
 
 (defn- handle-nothing [k not-found]
   (case k
@@ -75,15 +74,15 @@
     not-found))
 
 (extend-type Nothing
-  #?(:clj  IMatchLookup
-     :cljs ILookup)
-  #?(:clj  (val-at [_ k not-found]
-             (handle-nothing k not-found))
-     :cljs (-lookup
-             ([this k]
-               (handle-nothing k nil))
-             ([this k not-found]
-               (handle-nothing k not-found)))))
+  #?@(:clj  [IMatchLookup
+             (val-at [_ k not-found]
+               (handle-nothing k not-found))]
+      :cljs [ILookup
+             (-lookup
+               ([this k]
+                 (handle-nothing k nil))
+               ([this k not-found]
+                 (handle-nothing k not-found)))]))
 
 (defn- handle-left [this k not-found]
   (case k
@@ -92,15 +91,15 @@
     not-found))
 
 (extend-type Left
-  #?(:clj  IMatchLookup
-     :cljs ILookup)
-  #?(:clj  (val-at [this k not-found]
-             (handle-left this k not-found))
-     :cljs (-lookup
-             ([this k]
-               (handle-left this k nil))
-             ([this k not-found]
-               (handle-left this k not-found)))))
+  #?@(:clj  [IMatchLookup
+             (val-at [this k not-found]
+               (handle-left this k not-found))]
+      :cljs [ILookup
+             (-lookup
+               ([this k]
+                 (handle-left this k nil))
+               ([this k not-found]
+                 (handle-left this k not-found)))]))
 
 (defn- handle-right [this k not-found]
   (case k
@@ -109,12 +108,12 @@
     not-found))
 
 (extend-type Right
-  #?(:clj  IMatchLookup
-     :cljs ILookup)
-  #?(:clj  (val-at [this k not-found]
-             (handle-right this k not-found))
-     :cljs (-lookup
-             ([this k]
-               (handle-right this k nil))
-             ([this k not-found]
-               (handle-right this k not-found)))))
+  #?@(:clj  [IMatchLookup
+             (val-at [this k not-found]
+               (handle-right this k not-found))]
+      :cljs [ILookup
+             (-lookup
+               ([this k]
+                 (handle-right this k nil))
+               ([this k not-found]
+                 (handle-right this k not-found)))]))
