@@ -1,2 +1,4 @@
 language: clojure
-script: lein midje
+script:
+ - lein test
+ - lein doo node node-test once
