@@ -55,11 +55,11 @@ Just require `[cats.match]` and you're good to go!
 
 ## Installation
 
-Download from [clojars](https://clojars.org/org.clojars.danpersa/cats.match)
+Download from [clojars](https://clojars.org/cats.match)
 
 For lein users
 
-    [org.clojars.danpersa/cats.match "1.0.0"]
+    [cats.match "1.0.0"]
 
 ## How to contribute
 
