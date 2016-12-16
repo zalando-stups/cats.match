@@ -1,4 +1,4 @@
-(defproject cats.match "0.1.1-SNAPSHOT"
+(defproject cats.match "1.0.0"
   :description "cats.match provides pattern matching for the monads in the clojure cats library."
   :url "https://github.com/zalando/cats.match"
   :license {:name "MIT License"

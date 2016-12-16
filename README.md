@@ -2,7 +2,7 @@
 
 <p align="center"><img width="200" alt="cats.match" src="https://rawgithub.com/zalando/cats.match/master/cats.match.jpg"></p>
 
-[![Clojars Project](https://img.shields.io/clojars/v/org.clojars.danpersa/cats.match.svg)](https://clojars.org/org.clojars.danpersa/cats.match)
+[![Clojars Project](https://img.shields.io/clojars/v/cats.match.svg)](https://clojars.org/cats.match)
 [![Build Status](https://travis-ci.org/zalando/cats.match.svg?branch=master)](https://travis-ci.org/zalando/cats.match)
 
 Having monads without pattern matching is neither fun nor cool!
@@ -59,7 +59,7 @@ Download from [clojars](https://clojars.org/org.clojars.danpersa/cats.match)
 
 For lein users
 
-    [org.clojars.danpersa/cats.match "0.1.0"]
+    [org.clojars.danpersa/cats.match "1.0.0"]
 
 ## How to contribute
 
