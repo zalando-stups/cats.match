@@ -1,2 +1,6 @@
 language: clojure
-script: lein midje
+jdk:
+  - oraclejdk8
+script:
+ - lein test cats.match-test
+ - lein doo node node-test once

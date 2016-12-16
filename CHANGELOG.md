@@ -6,7 +6,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Changed
 - Change license to MIT
 - Match Either with :success, :failure
-
+- Add support for Clojurescript
+- Use clojure.test instead of midje
 
 ## 0.1.0 - 2016-08-04
 ### Added
